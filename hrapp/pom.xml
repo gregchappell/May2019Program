@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.6.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<!-- Application details for spring boot project -->
+	<groupId>com.example</groupId>
+	<artifactId>hrapp</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>HRApp</name>
+	<description>Demo project for HR Application</description>
+
+	<properties>
+	<!-- Java version for the current project -->
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+	<!-- each dependency as organisation, artifact name -->
+		<dependency>
+		<!--  data JPA is used to manage persistence using JPA Java persistence API -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+		<!-- Identify the service API using REST implementation representational state transfer (REST) -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jersey</artifactId>
+		</dependency>
+
+		<dependency>
+		<!-- the database driver to connect to MYSQL data base -->
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+		<!-- Spring JUnit test engine for unit testing -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
