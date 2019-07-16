@@ -14,7 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mastek.training.hrapp.apis.EmployeeService;
+import com.mastek.training.hrapp.entitiese.Department;
 import com.mastek.training.hrapp.entitiese.Employee;
+import com.mastek.training.hrapp.entitiese.Project;
 
 // Initilize the JUnit test with Spring Boot application environment 
 // Spring Boot test: Used to test Spring application context
@@ -61,6 +63,29 @@ public class HrAppApplicationTests {
 			System.out.println(employee);
 			}
 		assertEquals(emps.size(),7);}	
+	
+	@Test
+	public void manageAssociations() {
+		Department d1 = new Department();
+		d1.setDepName("Admin");
+		d1.setLocation("Uk");
+		
+		Employee emp1 = new Employee();
+		emp1.setName("Admin emp 1");
+		emp1.setSalary(12123);
+		
+		Employee emp2 = new Employee();
+		emp2.setName("Admin emp 2");
+		emp2.setSalary(2344);
+		
+		Project p1 = new Project();
+		p1.setProName("Uk project");
+		p1.setCustomer("Uk customer");
+		
+		Project p2 = new Project();
+		p2.setProName("Uk project 2");
+		p2.setCustomer("cusotmer 2");
+	}
 
 
 }
