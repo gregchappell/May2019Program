@@ -61,10 +61,6 @@ public class HrAppApplicationTests {
 			System.out.println(employee);
 			}
 		assertEquals(emps.size(),7);}	
-	
-	@Test
-	public void simpleTest() {
-		System.out.println("System Test Executed");
-	}
+
 
 }
