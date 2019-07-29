@@ -49,6 +49,7 @@ public class ProjectApplicationTests {
 		int prono = 16;
 		assertNotNull(ProService.findByProno(prono));
 	}	
+	
 	@Test
 	public void deleteByPronoUsingService() {
 		int prono = 14;

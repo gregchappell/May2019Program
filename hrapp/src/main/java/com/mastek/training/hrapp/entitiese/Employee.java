@@ -19,12 +19,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
+
+
 @Scope("prototype") // one copy for each test case
 @Entity // Declares the class as an entity
 @Table(name = "JPA_EMPLOYEE") // names the table created as JPA_EMPLOYEE
@@ -34,16 +39,18 @@ import org.springframework.stereotype.Component;
 			query="select e from Employee e where e.salary between :min and :max")
 	
 })
+@XmlRootElement
 public class Employee implements Serializable { // manage Serialisation of objects
+	@FormParam("empno")
 	@Value("-1")
 	private int empno;
-	@Value("Greg")
+	@Value("Ollie")
+	@FormParam("name") // name of parameters passed via html form
 	private String name;
 	@Value("100.0")
+	@FormParam("salary")
 	private double salary;
-	
-	
-	
+
 	private Set<Project> assignments = new HashSet<>();
 	// manyToMany configuring the association for both entities 
 	//joinTable provides all the configuration for the third table
@@ -54,9 +61,11 @@ public class Employee implements Serializable { // manage Serialisation of objec
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinTable(name="JPA_ASSIGNMENT", joinColumns=@JoinColumn(name="FK_EMPNO"),
 			inverseJoinColumns = @JoinColumn(name = "FK_PROJECTID"))
+	// @XmlTransient // ignore the collections while using api
 	public Set<Project> getAssignments() {
 		return assignments;
 	}
+	
 	public void setAssignments(Set<Project> assignments) {
 		this.assignments = assignments;
 	}
@@ -75,6 +84,7 @@ public class Employee implements Serializable { // manage Serialisation of objec
 	public Employee() {
 		System.out.println("Employee Created");
 	}
+	
 	@Id // Declare the property as Primary Key
 	@Column(name = "employee_number") // Declare the name of the column
 	@GeneratedValue(strategy = GenerationType.AUTO) // Auto generates the Primary key as incremented

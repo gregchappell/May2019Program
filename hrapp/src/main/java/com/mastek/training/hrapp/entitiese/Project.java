@@ -8,13 +8,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -35,8 +36,10 @@ public class Project implements Serializable { // manage Serialisation of object
 	@Value("-1")
 	private int prono;
 	@Value("lads")
+	@FormParam("proname")
 	private String proname;
 	@Value("proj")
+	@FormParam("customer")
 	private String customer;
 	
 	private Set<Employee> team = new HashSet<>();
@@ -44,6 +47,7 @@ public class Project implements Serializable { // manage Serialisation of object
 	// mappedBy: check the configurations for Many to Many associations 
 	// In employee class getAssignments() method
 	@ManyToMany(mappedBy = "assignments")
+	@XmlTransient
 	public Set<Employee> getTeam() {
 		return team;
 	}

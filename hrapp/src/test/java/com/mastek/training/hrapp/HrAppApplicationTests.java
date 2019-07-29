@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,49 +34,65 @@ public class HrAppApplicationTests {
 	EmployeeService empService;
 	
 	@Autowired
-	Employee emp;
-	
-	
-	
-	@Test
-	public void addEmployeeUsingService() {
-		emp.setEmpno(6); //setting empno to 0, the default, will add a new employee, setting empno to a current number will update it.
-		emp.setName("new guy 6");
-		emp.setSalary(5434);
-		emp = empService.registerOrUpdateEmployee(emp);
-		assertNotNull(emp);
-	}
-	
-	@Test
-	public void findByEmpnoUsingService() {
-		int empno = 1;
-		assertNotNull(empService.findByEmpno(empno));
-	}	
-	@Test
-	public void deleteByEmpnoUsingService() {
-		int empno = 5;
-		empService.deleteByEmpno(empno);
-		assertNull(empService.findByEmpno(empno));
-	}
-	
-	@Test
-	public void checkFetchBySalary() {
-		List<Employee> emps = empService.fetchEmployeesBySalaryRange(0, 9000);
-		for (Employee employee : emps) {
-			System.out.println(employee);
-			}
-		assertEquals(emps.size(),7);}	
-	//employee service @autowired is already assingned at the top
-
-	
-	@Autowired
 	DepartmentService depService;
 	
 	@Autowired
 	ProjectService proService;
 	
 	
+	//@Autowired
+	//Employee emp;
 	
+	
+	
+//	@Test
+//	public void addEmployeeUsingService() {
+//		Employee emp = new Employee();
+//		//emp.setEmpno(6); //setting empno to 0, the default, will add a new employee, setting empno to a current number will update it.
+//		emp.setName("new guy 6");
+//		emp.setSalary(5434);
+//		emp = empService.registerOrUpdateEmployee(emp);
+//		assertNotNull(emp);
+//	}
+	
+//	@Test
+//	public void findByEmpnoUsingService() {
+//		int empno = 1;
+//		assertNotNull(empService.findByEmpno(empno));
+//	}	
+//	@Test
+//	public void deleteByEmpnoUsingService() {
+//		int empno = 5;
+//		empService.deleteByEmpno(empno);
+//		assertNull(empService.findByEmpno(empno));
+//	}
+//	
+//	@Test
+//	public void checkFetchBySalary() {
+//		List<Employee> emps = empService.fetchEmployeesBySalaryRange(0, 9000);
+//		for (Employee employee : emps) {
+//			System.out.println(employee);
+//			}
+//		assertEquals(emps.size(),7);}	
+//	//employee service @autowired is already assingned at the top
+
+	@Test
+	public void assignDepartmentToEmployee() {
+		int empno = 29;
+		int deptno = 17;
+		Employee emp = empService.assignDepartment(empno,deptno);
+		assertNotNull(emp.getCurrentDepartment());
+	}
+	
+	@Test
+	public void assignProjectToEMployee() {
+		int empno = 59;
+		int projectId = 19;
+		
+		Set<Project> projects = empService.assignProject(empno, projectId);
+		assertNotNull(projects);
+		
+	}
 	
 	
 	@Test
